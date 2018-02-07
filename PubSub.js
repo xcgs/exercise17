@@ -13,14 +13,19 @@ module.exports = class PubSub {
 
   subscribe(type, fn) {
     // todo subscribe
+    this.subscribers[type]=fn;
   }
 
   unsubscribe(type, fn) {
     // todo unsubscribe
+    this.subscribers[type]=null
   }
 
   publish(type, ...args) {
     // todo publish
+    if(typeof this.subscribers[type] === 'function'){
+      this.subscribers[type].call(this, ...args);
+    }
   }
 
 }
