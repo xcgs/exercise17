@@ -38,11 +38,15 @@ class Subject {
   }
   notify(...args) {
     // todo notify
-    for(var i in  this.observers.observerList){
-       if(typeof this.observers.observerList[i].update === 'function'){
-          this.observers.observerList[i].update(...args);
-       }
-    }
+    // for(var i in  this.observers.observerList){
+    //    if(typeof this.observers.observerList[i].update === 'function'){
+    //       this.observers.observerList[i].update(...args);
+    //    }
+    // }
+    this.observers.observerList.forEach(fn=>{
+      fn.update(...args);
+    })
+
   }
 }
 
